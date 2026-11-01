@@ -11,6 +11,11 @@
   <meta property="og:description" content="Object detection models that hold up on data they have never seen.">
   <meta property="og:url" content="https://melihpak.me/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://melihpak.me/assets/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://melihpak.me/assets/img/og-home.png">
   <link rel="canonical" href="https://melihpak.me/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='7' width='26' height='20' fill='none' stroke='%23ff7a2e' stroke-width='3'/><rect x='3' y='2' width='14' height='6' fill='%23ff7a2e'/></svg>">
   <script>
@@ -33,7 +38,7 @@
     <div class="container">
       <a class="logo" href="#top">melihpak<span>.me</span></a>
       <nav class="nav" aria-label="Main">
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="#work"><span lang="en">Work</span><span lang="tr">Öne Çıkan</span></a></li>
           <li><a href="#about"><span lang="en">About</span><span lang="tr">Hakkımda</span></a></li>
           <li><a href="#journey"><span lang="en">Journey</span><span lang="tr">Yolculuk</span></a></li>
@@ -43,6 +48,9 @@
         </ul>
         <div class="toggles">
           <button class="icon-btn" id="lang-toggle" type="button">TR</button>
+          <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
           <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme">
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -91,35 +99,10 @@
           <a class="btn" href="https://www.linkedin.com/in/melih-pak-ab0359195" target="_blank" rel="noopener">LinkedIn</a>
         </div>
 
-        <aside class="term-card" id="term" aria-live="polite">
-          <div class="term-head mono">
-            <span><span lang="en">// term of the day</span><span lang="tr">// günün terimi</span> · <span class="term-cat"><span lang="en"></span><span lang="tr"></span></span></span>
-            <span class="term-date"><span lang="en"></span><span lang="tr"></span></span>
-          </div>
-          <h2 class="term-name">IoU (Intersection over Union)</h2>
-          <p class="term-def"><span lang="en"></span><span lang="tr"></span></p>
-          <div class="term-foot mono">
-            <span class="term-count"></span>
-            <button class="term-next" type="button"><span lang="en">another term →</span><span lang="tr">başka bir terim →</span></button>
-          </div>
-        </aside>
       </div>
     </div>
 
     <div class="container">
-      <!-- About, as code -->
-      <section id="about">
-        <div class="section-head">
-          <p class="eyebrow"><span lang="en">// about</span><span lang="tr">// hakkımda</span></p>
-          <h2><span lang="en">The short version, compiled</span><span lang="tr">Kısa versiyonu, derlenmiş hali</span></h2>
-        </div>
-        <div class="code-window" data-scroll-code>
-          <div class="code-bar mono"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>melih.py</div>
-<pre class="code mono"><code><span class="ln"><span class="k">class</span> <span class="cl">Melih</span>(<span class="cl">ComputerEngineer</span>):</span><span class="ln">    <span class="s">"""Final-year Computer Engineering student."""</span></span><span class="ln">&nbsp;</span><span class="ln">    university  = <span class="s">"Kocaeli University"</span></span><span class="ln">    graduating  = <span class="n">2027</span></span><span class="ln">    based_in    = <span class="s">"Kocaeli, Türkiye"</span>  <span class="c"># open to remote &amp; relocation</span></span><span class="ln">&nbsp;</span><span class="ln">    languages   = [<span class="s">"Python"</span>, <span class="s">"Java"</span>, <span class="s">"JavaScript"</span>, <span class="s">"C/C++"</span>, <span class="s">"SQL"</span>]</span><span class="ln">    focus       = [<span class="s">"computer vision"</span>, <span class="s">"machine learning"</span>]</span><span class="ln">    also_built  = [<span class="s">"a real-time mobile game"</span>, <span class="s">"web platforms"</span>,</span><span class="ln">                   <span class="s">"concurrent simulations"</span>, <span class="s">"database apps"</span>]</span><span class="ln">    teamwork    = [<span class="s">"Agile/Scrum"</span>, <span class="s">"Jira"</span>, <span class="s">"Git"</span>]</span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">currently</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"Intern @ Soylu Bilim &amp; Teknoloji"</span></span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">looking_for</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"junior software / CV / ML roles"</span></span></code></pre>
-          <p class="code-status mono" aria-hidden="true"><span class="todo"><span lang="en">scroll to compile…</span><span lang="tr">derlemek için kaydır…</span></span><span class="ok">✓ <span lang="en">compiled, 0 errors</span><span lang="tr">derlendi, 0 hata</span></span></p>
-        </div>
-      </section>
-
       <!-- Featured work -->
       <section id="work">
         <div class="section-head">
@@ -130,8 +113,8 @@
         <article class="featured">
           <div>
             <div class="featured-media">
-              <img src="https://raw.githubusercontent.com/MelihPAK/wildfire-uav-detection/main/assets/demo_heinola.gif"
-                alt="Detector output on drone footage of the Heinola forest fire: orange boxes mark fire, blue boxes mark smoke">
+              <video src="assets/img/demo_heinola.mp4" poster="assets/img/demo_heinola_poster.jpg" autoplay muted loop playsinline width="480" height="252"
+                aria-label="Detector output on drone footage of the Heinola forest fire: orange boxes mark fire, blue boxes mark smoke"></video>
             </div>
             <p class="caption">
               <span lang="en">Held-out Heinola fire, never seen in training. Orange = fire, blue = smoke, green = ground truth.</span>
@@ -163,6 +146,19 @@
             </div>
           </div>
         </article>
+      </section>
+
+      <!-- About, as code -->
+      <section id="about">
+        <div class="section-head">
+          <p class="eyebrow"><span lang="en">// about</span><span lang="tr">// hakkımda</span></p>
+          <h2><span lang="en">The short version, compiled</span><span lang="tr">Kısa versiyonu, derlenmiş hali</span></h2>
+        </div>
+        <div class="code-window" data-scroll-code>
+          <div class="code-bar mono"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>melih.py</div>
+<pre class="code mono"><code><span class="ln"><span class="k">class</span> <span class="cl">Melih</span>(<span class="cl">ComputerEngineer</span>):</span><span class="ln">    <span class="s">"""Final-year Computer Engineering student."""</span></span><span class="ln">&nbsp;</span><span class="ln">    university  = <span class="s">"Kocaeli University"</span></span><span class="ln">    graduating  = <span class="n">2027</span></span><span class="ln">    based_in    = <span class="s">"Kocaeli, Türkiye"</span>  <span class="c"># open to remote &amp; relocation</span></span><span class="ln">&nbsp;</span><span class="ln">    languages   = [<span class="s">"Python"</span>, <span class="s">"Java"</span>, <span class="s">"JavaScript"</span>, <span class="s">"C/C++"</span>, <span class="s">"SQL"</span>]</span><span class="ln">    focus       = [<span class="s">"computer vision"</span>, <span class="s">"machine learning"</span>]</span><span class="ln">    also_built  = [<span class="s">"a real-time mobile game"</span>, <span class="s">"web platforms"</span>,</span><span class="ln">                   <span class="s">"concurrent simulations"</span>, <span class="s">"database apps"</span>]</span><span class="ln">    teamwork    = [<span class="s">"Agile/Scrum"</span>, <span class="s">"Jira"</span>, <span class="s">"Git"</span>]</span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">currently</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"Intern @ Soylu Bilim &amp; Teknoloji"</span></span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">looking_for</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"junior software / CV / ML roles"</span></span></code></pre>
+          <p class="code-status mono" aria-hidden="true"><span class="todo"><span lang="en">scroll to compile…</span><span lang="tr">derlemek için kaydır…</span></span><span class="ok">✓ <span lang="en">compiled, 0 errors</span><span lang="tr">derlendi, 0 hata</span></span></p>
+        </div>
       </section>
 
       <!-- Journey -->
@@ -280,27 +276,6 @@
         </div>
       </section>
 
-      <!-- Scroll-to-sort strip -->
-      <section class="sorter" data-sorter aria-label="Sorting algorithm visualisation">
-        <div class="sorter-sticky">
-          <div class="sorter-head">
-            <p class="eyebrow"><span lang="en">// intermission</span><span lang="tr">// ara</span></p>
-            <h2><span lang="en">Scroll to sort</span><span lang="tr">Kaydır ve sırala</span></h2>
-            <div class="sorter-tabs mono" role="tablist">
-              <button type="button" role="tab" data-algo="bubble" aria-selected="true">bubble</button>
-              <button type="button" role="tab" data-algo="insertion" aria-selected="false">insertion</button>
-              <button type="button" role="tab" data-algo="quick" aria-selected="false">quick</button>
-            </div>
-          </div>
-          <div class="bars" aria-hidden="true"></div>
-          <p class="sorter-stats mono">
-            <span><span lang="en">comparisons</span><span lang="tr">karşılaştırma</span>: <b data-cmp>0</b></span>
-            <span><span lang="en">swaps</span><span lang="tr">yer değiştirme</span>: <b data-swp>0</b></span>
-            <span data-bigo>O(n²)</span>
-          </p>
-        </div>
-      </section>
-
       <!-- Skills -->
       <section id="skills">
         <div class="section-head">
@@ -357,6 +332,47 @@
               <li lang="tr">Anthropic: Yapay Zekâ Destekli Geliştirme &amp; Prompt Mühendisliği</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <!-- Extras -->
+      <section id="extras">
+        <div class="section-head">
+          <p class="eyebrow"><span lang="en">// just for fun</span><span lang="tr">// sadece eğlence için</span></p>
+          <h2><span lang="en">A little extra</span><span lang="tr">Biraz da eğlence</span></h2>
+        </div>
+      <aside class="term-card" id="term" aria-live="polite">
+        <div class="term-head mono">
+          <span><span lang="en">// term of the day</span><span lang="tr">// günün terimi</span> · <span class="term-cat"><span lang="en"></span><span lang="tr"></span></span></span>
+          <span class="term-date"><span lang="en"></span><span lang="tr"></span></span>
+        </div>
+        <h3 class="term-name">IoU (Intersection over Union)</h3>
+        <p class="term-def"><span lang="en"></span><span lang="tr"></span></p>
+        <div class="term-foot mono">
+          <span class="term-count"></span>
+          <button class="term-next" type="button"><span lang="en">another term →</span><span lang="tr">başka bir terim →</span></button>
+        </div>
+      </aside>
+      </section>
+
+      <!-- Scroll-to-sort strip -->
+      <section class="sorter" data-sorter aria-label="Sorting algorithm visualisation">
+        <div class="sorter-sticky">
+          <div class="sorter-head">
+            <p class="eyebrow"><span lang="en">// intermission</span><span lang="tr">// ara</span></p>
+            <h2><span lang="en">Scroll to sort</span><span lang="tr">Kaydır ve sırala</span></h2>
+            <div class="sorter-tabs mono" role="tablist">
+              <button type="button" role="tab" data-algo="bubble" aria-selected="true">bubble</button>
+              <button type="button" role="tab" data-algo="insertion" aria-selected="false">insertion</button>
+              <button type="button" role="tab" data-algo="quick" aria-selected="false">quick</button>
+            </div>
+          </div>
+          <div class="bars" aria-hidden="true"></div>
+          <p class="sorter-stats mono">
+            <span><span lang="en">comparisons</span><span lang="tr">karşılaştırma</span>: <b data-cmp>0</b></span>
+            <span><span lang="en">swaps</span><span lang="tr">yer değiştirme</span>: <b data-swp>0</b></span>
+            <span data-bigo>O(n²)</span>
+          </p>
         </div>
       </section>
 

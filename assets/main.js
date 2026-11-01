@@ -38,6 +38,22 @@
     });
   }
 
+  // Mobile menu
+  var menuBtn = document.getElementById("menu-toggle");
+  var navLinks = document.getElementById("nav-links");
+  if (menuBtn && navLinks) {
+    function setMenu(open) {
+      navLinks.classList.toggle("open", open);
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    menuBtn.addEventListener("click", function () {
+      setMenu(!navLinks.classList.contains("open"));
+    });
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+  }
+
   // Hero: detection box locks on and the confidence counts up
   var target = document.querySelector("[data-detect-on-load]");
   if (target) {

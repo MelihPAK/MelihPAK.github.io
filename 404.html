@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-lang="en"
+  data-title-en="404 · Melih Pak"
+  data-title-tr="404 · Melih Pak">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · Melih Pak</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='7' width='26' height='20' fill='none' stroke='%23ff7a2e' stroke-width='3'/><rect x='3' y='2' width='14' height='6' fill='%23ff7a2e'/></svg>">
+  <script>
+    (function () {
+      var r = document.documentElement, t = null, l = null;
+      try { t = localStorage.getItem("theme"); l = localStorage.getItem("lang"); } catch (e) {}
+      if (t) r.dataset.theme = t;
+      if (!l) l = (navigator.language || "").toLowerCase().indexOf("tr") === 0 ? "tr" : "en";
+      r.dataset.lang = l;
+      r.lang = l;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main class="hero" style="min-height:100vh;border:0">
+    <div class="container">
+      <p class="hero-status mono"><span class="dot" aria-hidden="true" style="background:var(--fire);animation:none"></span>
+        <span lang="en">0 objects detected</span><span lang="tr">0 nesne tespit edildi</span></p>
+      <h1 class="det is-on" data-label="page_not_found 0.99">404</h1>
+      <p class="role">
+        <span lang="en">This page isn't in the frame.</span>
+        <span lang="tr">Bu sayfa kadrajda değil.</span>
+      </p>
+      <p class="lede">
+        <span lang="en">The model scanned every pixel and found nothing here. It may have moved, or the link has a typo.</span>
+        <span lang="tr">Model her pikseli taradı ve burada hiçbir şey bulamadı. Sayfa taşınmış ya da linkte bir yazım hatası olabilir.</span>
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="/"><span lang="en">Back to the homepage</span><span lang="tr">Ana sayfaya dön</span></a>
+        <a class="btn" href="/wildfire.html"><span lang="en">Read the case study</span><span lang="tr">Vaka çalışmasını oku</span></a>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.title = document.documentElement.getAttribute("data-title-" + document.documentElement.dataset.lang);
+  </script>
+</body>
+</html>
