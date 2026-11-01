@@ -35,7 +35,8 @@
       <nav class="nav" aria-label="Main">
         <ul class="nav-links">
           <li><a href="#work"><span lang="en">Work</span><span lang="tr">Öne Çıkan</span></a></li>
-          <li><a href="#experience"><span lang="en">Experience</span><span lang="tr">Deneyim</span></a></li>
+          <li><a href="#about"><span lang="en">About</span><span lang="tr">Hakkımda</span></a></li>
+          <li><a href="#journey"><span lang="en">Journey</span><span lang="tr">Yolculuk</span></a></li>
           <li><a href="#projects"><span lang="en">Projects</span><span lang="tr">Projeler</span></a></li>
           <li><a href="#skills"><span lang="en">Skills</span><span lang="tr">Yetenekler</span></a></li>
           <li><a href="#contact"><span lang="en">Contact</span><span lang="tr">İletişim</span></a></li>
@@ -92,7 +93,7 @@
 
         <aside class="term-card" id="term" aria-live="polite">
           <div class="term-head mono">
-            <span><span lang="en">// term of the day</span><span lang="tr">// günün terimi</span></span>
+            <span><span lang="en">// term of the day</span><span lang="tr">// günün terimi</span> · <span class="term-cat"><span lang="en"></span><span lang="tr"></span></span></span>
             <span class="term-date"><span lang="en"></span><span lang="tr"></span></span>
           </div>
           <h2 class="term-name">IoU (Intersection over Union)</h2>
@@ -106,6 +107,19 @@
     </div>
 
     <div class="container">
+      <!-- About, as code -->
+      <section id="about">
+        <div class="section-head">
+          <p class="eyebrow"><span lang="en">// about</span><span lang="tr">// hakkımda</span></p>
+          <h2><span lang="en">The short version, compiled</span><span lang="tr">Kısa versiyonu, derlenmiş hali</span></h2>
+        </div>
+        <div class="code-window" data-scroll-code>
+          <div class="code-bar mono"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>melih.py</div>
+<pre class="code mono"><code><span class="ln"><span class="k">class</span> <span class="cl">Melih</span>(<span class="cl">ComputerEngineer</span>):</span><span class="ln">    <span class="s">"""Final-year Computer Engineering student."""</span></span><span class="ln">&nbsp;</span><span class="ln">    university  = <span class="s">"Kocaeli University"</span></span><span class="ln">    graduating  = <span class="n">2027</span></span><span class="ln">    based_in    = <span class="s">"Kocaeli, Türkiye"</span>  <span class="c"># open to remote &amp; relocation</span></span><span class="ln">&nbsp;</span><span class="ln">    languages   = [<span class="s">"Python"</span>, <span class="s">"Java"</span>, <span class="s">"JavaScript"</span>, <span class="s">"C/C++"</span>, <span class="s">"SQL"</span>]</span><span class="ln">    focus       = [<span class="s">"computer vision"</span>, <span class="s">"machine learning"</span>]</span><span class="ln">    also_built  = [<span class="s">"a real-time mobile game"</span>, <span class="s">"web platforms"</span>,</span><span class="ln">                   <span class="s">"concurrent simulations"</span>, <span class="s">"database apps"</span>]</span><span class="ln">    teamwork    = [<span class="s">"Agile/Scrum"</span>, <span class="s">"Jira"</span>, <span class="s">"Git"</span>]</span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">currently</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"Intern @ Soylu Bilim &amp; Teknoloji"</span></span><span class="ln">&nbsp;</span><span class="ln">    <span class="k">def</span> <span class="f">looking_for</span>(self):</span><span class="ln">        <span class="k">return</span> <span class="s">"junior software / CV / ML roles"</span></span></code></pre>
+          <p class="code-status mono" aria-hidden="true"><span class="todo"><span lang="en">scroll to compile…</span><span lang="tr">derlemek için kaydır…</span></span><span class="ok">✓ <span lang="en">compiled, 0 errors</span><span lang="tr">derlendi, 0 hata</span></span></p>
+        </div>
+      </section>
+
       <!-- Featured work -->
       <section id="work">
         <div class="section-head">
@@ -151,40 +165,29 @@
         </article>
       </section>
 
-      <!-- Experience -->
-      <section id="experience">
+      <!-- Journey -->
+      <section id="journey">
         <div class="section-head">
-          <p class="eyebrow"><span lang="en">// experience</span><span lang="tr">// deneyim</span></p>
-          <h2><span lang="en">Where I've worked</span><span lang="tr">Çalıştığım yerler</span></h2>
+          <p class="eyebrow"><span lang="en">// journey</span><span lang="tr">// yolculuk</span></p>
+          <h2><span lang="en">From first lecture to first job</span><span lang="tr">İlk dersten ilk işe</span></h2>
         </div>
-        <ol class="timeline">
-          <li class="current">
-            <div class="job-head">
-              <h3>Soylu Bilim &amp; Teknoloji</h3>
-              <span class="when"><span lang="en">Sep 2026 – present</span><span lang="tr">Eyl 2026 – devam ediyor</span></span>
-            </div>
-            <p class="job-role"><span lang="en">Intern</span><span lang="tr">Stajyer</span></p>
+        <ol class="journey" data-journey>
+          <li class="stop">
+            <span class="when mono">2019</span>
+            <h3><span lang="en">Started Computer Engineering</span><span lang="tr">Bilgisayar Mühendisliğine başladım</span></h3>
+            <p class="job-role">Kocaeli University</p>
+            <p lang="en">Foundations first: data structures, algorithms, object-oriented programming, and the maths behind robotics and 3D geometry.</p>
+            <p lang="tr">Önce temeller: veri yapıları, algoritmalar, nesne yönelimli programlama ve robotik ile 3B geometrinin arkasındaki matematik.</p>
           </li>
-          <li>
-            <div class="job-head">
-              <h3>Rasyotek Human Resources Informatics</h3>
-              <span class="when"><span lang="en">Jun – Jul 2026</span><span lang="tr">Haz – Tem 2026</span></span>
-            </div>
-            <p class="job-role"><span lang="en">Intern · Remote</span><span lang="tr">Stajyer · Uzaktan</span></p>
-            <ul lang="en">
-              <li>Developed features for an enterprise HR software product in an Agile/Scrum team, tracking work through the SDLC in Jira.</li>
-              <li>Analysed B2B and B2C business models to define software requirements for two distinct customer segments.</li>
-            </ul>
-            <ul lang="tr">
-              <li>Agile/Scrum ekibinde kurumsal bir İK yazılımı için özellikler geliştirdim; işleri Jira üzerinden yazılım geliştirme yaşam döngüsü boyunca takip ettim.</li>
-              <li>İki farklı müşteri segmenti için yazılım gereksinimlerini belirlemek amacıyla B2B ve B2C iş modellerini analiz ettim.</li>
-            </ul>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Along the way</span><span lang="tr">Bu süreçte</span></span>
+            <h3><span lang="en">Built across the stack</span><span lang="tr">Farklı alanlarda projeler</span></h3>
+            <p lang="en">A real-time multiplayer word game over sockets, a multithreaded restaurant simulation, an OCR-driven course matching system, a role-based fitness platform, and a Vision Transformer trained from scratch.</p>
+            <p lang="tr">Soketlerle gerçek zamanlı çok oyunculu bir kelime oyunu, çok iş parçacıklı bir restoran simülasyonu, OCR tabanlı bir ders eşleştirme sistemi, rol tabanlı bir fitness platformu ve sıfırdan eğitilmiş bir Vision Transformer.</p>
           </li>
-          <li>
-            <div class="job-head">
-              <h3>Ordulu Teknoloji · Ankara</h3>
-              <span class="when"><span lang="en">Jul – Sep 2025</span><span lang="tr">Tem – Eyl 2025</span></span>
-            </div>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Jul – Sep 2025</span><span lang="tr">Tem – Eyl 2025</span></span>
+            <h3>Ordulu Teknoloji · Ankara</h3>
             <p class="job-role"><span lang="en">Image Processing / Computer Vision Intern</span><span lang="tr">Görüntü İşleme / Bilgisayarlı Görü Stajyeri</span></p>
             <ul lang="en">
               <li>Contributed to a real-time image processing pipeline for Turkish Airlines airport camera systems: preprocessing, filtering and object detection modules with Python, OpenCV and a pretrained YOLO model.</li>
@@ -197,8 +200,39 @@
               <li>Model çıktısını (~%80–90 doğruluk) precision ve F1-score ile değerlendirdim, hatalı tespitleri raporlayıp algoritma iyileştirmesine destek oldum.</li>
             </ul>
           </li>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Jun – Jul 2026</span><span lang="tr">Haz – Tem 2026</span></span>
+            <h3>Rasyotek Human Resources Informatics</h3>
+            <p class="job-role"><span lang="en">Intern · Remote</span><span lang="tr">Stajyer · Uzaktan</span></p>
+            <ul lang="en">
+              <li>Developed features for an enterprise HR software product in an Agile/Scrum team, tracking work through the SDLC in Jira.</li>
+              <li>Analysed B2B and B2C business models to define software requirements for two distinct customer segments.</li>
+            </ul>
+            <ul lang="tr">
+              <li>Agile/Scrum ekibinde kurumsal bir İK yazılımı için özellikler geliştirdim; işleri Jira üzerinden yazılım geliştirme yaşam döngüsü boyunca takip ettim.</li>
+              <li>İki farklı müşteri segmenti için yazılım gereksinimlerini belirlemek amacıyla B2B ve B2C iş modellerini analiz ettim.</li>
+            </ul>
+          </li>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Sep 2026 – now</span><span lang="tr">Eyl 2026 – şimdi</span></span>
+            <h3>Soylu Bilim &amp; Teknoloji</h3>
+            <p class="job-role"><span lang="en">Intern</span><span lang="tr">Stajyer</span></p>
+          </li>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Oct 2026</span><span lang="tr">Eki 2026</span></span>
+            <h3><span lang="en">Published the wildfire detector</span><span lang="tr">Orman yangını tespit modelini yayınladım</span></h3>
+            <p lang="en">An end-to-end detection project, from finding a data leak in a public dataset to a CPU-only ONNX deployment. <a href="wildfire.html">Read the case study →</a></p>
+            <p lang="tr">Açık bir veri setindeki sızıntıyı bulmaktan yalnızca CPU ile çalışan ONNX dağıtımına kadar uçtan uca bir tespit projesi. <a href="wildfire.html">Vaka çalışmasını oku →</a></p>
+          </li>
+          <li class="stop future">
+            <span class="when mono"><span lang="en">2027 (expected)</span><span lang="tr">2027 (beklenen)</span></span>
+            <h3><span lang="en">Graduation, and the next chapter</span><span lang="tr">Mezuniyet ve sonraki bölüm</span></h3>
+            <p lang="en">Looking for a junior role where I can keep building. <a href="#contact">Let's talk →</a></p>
+            <p lang="tr">Üretmeye devam edebileceğim junior bir pozisyon arıyorum. <a href="#contact">Konuşalım →</a></p>
+          </li>
         </ol>
       </section>
+
 
       <!-- Projects -->
       <section id="projects">
@@ -243,6 +277,27 @@
             <p lang="tr">Yönetici, antrenör ve danışan için üç katmanlı rol tabanlı erişime sahip, kişiye özel planları bulut veritabanından sunan çevrim içi fitness koçluğu platformu.</p>
             <ul class="tags"><li>Web</li><li>RBAC</li><li>Cloud DB</li></ul>
           </article>
+        </div>
+      </section>
+
+      <!-- Scroll-to-sort strip -->
+      <section class="sorter" data-sorter aria-label="Sorting algorithm visualisation">
+        <div class="sorter-sticky">
+          <div class="sorter-head">
+            <p class="eyebrow"><span lang="en">// intermission</span><span lang="tr">// ara</span></p>
+            <h2><span lang="en">Scroll to sort</span><span lang="tr">Kaydır ve sırala</span></h2>
+            <div class="sorter-tabs mono" role="tablist">
+              <button type="button" role="tab" data-algo="bubble" aria-selected="true">bubble</button>
+              <button type="button" role="tab" data-algo="insertion" aria-selected="false">insertion</button>
+              <button type="button" role="tab" data-algo="quick" aria-selected="false">quick</button>
+            </div>
+          </div>
+          <div class="bars" aria-hidden="true"></div>
+          <p class="sorter-stats mono">
+            <span><span lang="en">comparisons</span><span lang="tr">karşılaştırma</span>: <b data-cmp>0</b></span>
+            <span><span lang="en">swaps</span><span lang="tr">yer değiştirme</span>: <b data-swp>0</b></span>
+            <span data-bigo>O(n²)</span>
+          </p>
         </div>
       </section>
 
@@ -333,5 +388,6 @@
 
   <script src="assets/main.js"></script>
   <script src="assets/fun.js"></script>
+  <script src="assets/scroll.js"></script>
 </body>
 </html>
