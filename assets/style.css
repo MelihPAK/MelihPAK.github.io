@@ -1266,6 +1266,122 @@ pre {
   line-height: 1.5;
 }
 
+/* ---------- Wandering drone ---------- */
+.drone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 45;
+  color: var(--text);
+  opacity: 0.78;
+  cursor: crosshair;
+  will-change: transform;
+  filter: drop-shadow(0 6px 4px rgba(0, 0, 0, 0.18));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.drone svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.drone-arms line {
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.drone-rotors circle {
+  fill: rgba(120, 113, 108, 0.12);
+  fill: color-mix(in srgb, var(--muted) 12%, transparent);
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-opacity: 0.6;
+}
+
+.drone-blades line {
+  stroke: var(--muted);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.drone-body {
+  fill: currentColor;
+}
+
+.drone-led {
+  fill: var(--gt);
+  animation: drone-blink 1.4s steps(2, jump-none) infinite;
+}
+
+@keyframes drone-blink {
+  50% { fill: var(--fire); }
+}
+
+/* Hover "scan": a dashed square that sweeps below the drone */
+.drone-scan {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180%;
+  height: 180%;
+  border: 1px dashed var(--smoke);
+  border-radius: 2px;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.drone.scanning .drone-scan {
+  opacity: 0.7;
+  transform: translate(-50%, -50%) scale(1);
+  animation: drone-scan 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes drone-scan {
+  to { transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* Clicked: the detection-box motif, in smoke blue */
+.drone.caught {
+  opacity: 1;
+}
+
+.drone.caught .drone-scan {
+  opacity: 1;
+  border-style: solid;
+  border-width: 1.5px;
+  transform: translate(-50%, -50%) scale(1);
+  animation: none;
+}
+
+.drone-label {
+  position: absolute;
+  left: -40%;
+  top: -40%;
+  transform: translateY(-100%);
+  padding: 1px 6px;
+  background: var(--smoke);
+  color: var(--on-accent);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: pre;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drone.caught .drone-label {
+  opacity: 1;
+}
+
+@media print {
+  .drone { display: none; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .featured,
