@@ -26,6 +26,9 @@
       if (!l) l = (navigator.language || "").toLowerCase().indexOf("tr") === 0 ? "tr" : "en";
       r.dataset.lang = l;
       r.lang = l;
+      // ?mirror=1 is the copy shown inside the intro monitor; it never shows the intro itself
+      if (/[?&]mirror=1/.test(location.search)) r.classList.add("is-mirror");
+      else if (!matchMedia("(prefers-reduced-motion: reduce)").matches) r.classList.add("has-dive");
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +37,29 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+  <!-- Intro: scroll to dive into a live miniature of this page -->
+  <section class="dive" data-dive aria-label="Intro">
+    <div class="dive-stage">
+      <p class="dive-caption mono" aria-hidden="true">
+        <span class="dive-rec"></span>
+        <span lang="en">live · scroll to dive in</span><span lang="tr">canlı · içeri dalmak için kaydır</span>
+      </p>
+      <div class="dive-monitor" data-dive-monitor>
+        <div class="dive-screen">
+          <iframe src="index.html?mirror=1" title="Live preview of this page" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+          <span class="dive-glare" aria-hidden="true"></span>
+          <span class="dive-island" aria-hidden="true"></span>
+        </div>
+        <span class="dive-stand" aria-hidden="true"></span>
+        <span class="dive-btn dive-btn-vol" aria-hidden="true"></span>
+        <span class="dive-btn dive-btn-power" aria-hidden="true"></span>
+      </div>
+      <button class="dive-skip mono" type="button" data-dive-skip>
+        <span lang="en">skip ↓</span><span lang="tr">atla ↓</span>
+      </button>
+    </div>
+  </section>
+
   <header class="site-header">
     <div class="container">
       <a class="logo" href="#top">melihpak<span>.me</span></a>

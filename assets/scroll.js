@@ -10,6 +10,61 @@
     return clamp((vh * start - r.top) / (r.height + vh * (start - end)));
   }
 
+  // ---------- Intro: dive into a live miniature of this page ----------
+  var root = document.documentElement;
+  var isMirror = root.classList.contains("is-mirror");
+  var dive = root.classList.contains("has-dive") ? document.querySelector("[data-dive]") : null;
+  var monitor = dive ? dive.querySelector("[data-dive-monitor]") : null;
+  var caption = dive ? dive.querySelector(".dive-caption") : null;
+  var skip = dive ? dive.querySelector("[data-dive-skip]") : null;
+
+  // The copy inside the monitor only needs to look right: no videos playing
+  if (isMirror) {
+    var vids = document.querySelectorAll("video");
+    for (var vi = 0; vi < vids.length; vi++) {
+      vids[vi].removeAttribute("autoplay");
+      vids[vi].preload = "none";
+      vids[vi].pause();
+    }
+  }
+
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+  function diveTravel() { return dive.offsetHeight - innerHeight; }
+
+  function updateDive() {
+    if (!dive) return;
+    var phone = root.clientWidth < 720;
+    dive.classList.toggle("is-phone", phone);
+
+    var travel = diveTravel();
+    var p = clamp(travel > 0 ? -dive.getBoundingClientRect().top / travel : 1);
+    var e = ease(p);
+
+    // Start small, end at exactly 1:1 so the live copy lines up with the real page.
+    // Interpolating the scale geometrically makes the zoom feel even all the way in.
+    var s0 = phone ? 0.6 : 0.52;
+    var s = p >= 1 ? 1 : s0 * Math.pow(1 / s0, e);
+    var lift = (1 - e) * (phone ? -2 : -4);              // vh; leaves room for the stand
+    var tiltX = 9 * (1 - clamp(p / 0.55));               // monitor leans back, then faces you
+    monitor.style.transform =
+      "translateY(" + lift.toFixed(2) + "vh) perspective(1800px) rotateX(" + tiltX.toFixed(2) + "deg) scale(" + s.toFixed(4) + ")";
+    monitor.style.setProperty("--glare", (1 - e).toFixed(3));
+
+    var fade = (1 - clamp(p * 5)).toFixed(3);
+    caption.style.opacity = fade;
+    skip.style.opacity = fade;
+    skip.style.visibility = p > 0.2 ? "hidden" : "";
+
+    dive.classList.toggle("is-done", p >= 1);
+  }
+
+  if (skip) {
+    skip.addEventListener("click", function () {
+      scrollTo({ top: dive.offsetTop + diveTravel(), behavior: "smooth" });
+    });
+  }
+
   // ---------- About: code "compiles" line by line ----------
   var codeBox = document.querySelector("[data-scroll-code]");
   var codeLines = codeBox ? codeBox.querySelectorAll(".ln") : [];
@@ -151,6 +206,7 @@
   var ticking = false;
   function update() {
     ticking = false;
+    updateDive();
     updateCode();
     updateJourney();
     updateSorter();

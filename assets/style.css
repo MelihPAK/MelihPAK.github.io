@@ -1266,6 +1266,189 @@ pre {
   line-height: 1.5;
 }
 
+/* ---------- Intro: dive into the screen ---------- */
+/* The section is one screen of pinned stage plus --dive-travel of scrolling.
+   Its negative bottom margin tucks the header and hero under the last screen
+   of the stage, so when the monitor fills the viewport the real page is
+   already sitting exactly where its live copy is. */
+.dive { display: none; }
+
+.has-dive .dive {
+  --dive-travel: 180vh;
+  display: block;
+  position: relative;
+  z-index: 40;
+  height: calc(100vh + var(--dive-travel));
+  padding: 0;
+  margin-bottom: -100vh;
+  pointer-events: none;
+}
+
+.dive-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: auto;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
+
+.dive.is-done .dive-stage {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* The monitor's screen is exactly one viewport; JS scales it down */
+.dive-monitor {
+  --bezel: 28px;
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.dive-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 var(--bezel) #18181b,
+    0 0 0 calc(var(--bezel) + 2px) #2a2a2e,
+    0 40px 90px calc(var(--bezel) - 6px) rgba(0, 0, 0, 0.22);
+}
+
+.dive-screen iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+
+.dive-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 38%);
+  opacity: var(--glare, 1);
+}
+
+.dive-stand {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + var(--bezel));
+  width: 18%;
+  height: 22%;
+  transform: translateX(-50%);
+  background: linear-gradient(#2a2a2e, #18181b);
+  clip-path: polygon(30% 0, 70% 0, 78% 82%, 100% 86%, 100% 100%, 0 100%, 0 86%, 22% 82%);
+}
+
+/* Phones: a phone instead of a monitor (no stand; camera island, side buttons) */
+.dive-island,
+.dive-btn { display: none; }
+
+.dive.is-phone .dive-monitor { --bezel: 22px; }
+.dive.is-phone .dive-screen {
+  border-radius: 44px;
+  box-shadow:
+    0 0 0 var(--bezel) #18181b,
+    0 0 0 calc(var(--bezel) + 3px) #3a3a3f,
+    0 40px 90px calc(var(--bezel) - 6px) rgba(0, 0, 0, 0.22);
+}
+.dive.is-phone .dive-stand { display: none; }
+
+/* Fades out as you dive in, so it is gone before the hand-off */
+.dive.is-phone .dive-island {
+  display: block;
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: min(24%, 120px);
+  height: 26px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #0a0a0b;
+  opacity: var(--glare, 1);
+  z-index: 2;
+}
+
+.dive.is-phone .dive-btn {
+  display: block;
+  position: absolute;
+  width: 6px;
+  border-radius: 3px;
+  background: #3a3a3f;
+}
+.dive.is-phone .dive-btn-vol {
+  left: calc(-1 * var(--bezel) - 8px);
+  top: 18%;
+  height: 12%;
+}
+.dive.is-phone .dive-btn-power {
+  right: calc(-1 * var(--bezel) - 8px);
+  top: 24%;
+  height: 16%;
+}
+
+.dive-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5vh;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  z-index: 1;
+}
+
+.dive-rec {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--fire);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.dive-skip {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dive-skip:hover { color: var(--text); }
+
+/* The copy inside the monitor: no scrollbar, no intro, no drone */
+.is-mirror,
+.is-mirror body {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+.is-mirror ::-webkit-scrollbar { display: none; }
+.is-mirror .drone { display: none; }
+
+@media print {
+  .dive { display: none !important; }
+}
+
 /* ---------- Wandering drone ---------- */
 .drone {
   position: fixed;
@@ -1280,11 +1463,31 @@ pre {
   -webkit-tap-highlight-color: transparent;
 }
 
-.drone svg {
+.drone svg,
+.drone canvas {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
+}
+
+/* three.js model loaded: hide the SVG stand-in */
+.drone.is-3d {
+  opacity: 0.95;
+  animation: drone-fade-in 0.4s ease-out;
+}
+
+.drone.is-3d svg {
+  display: none;
+}
+
+.drone.is-3d .drone-scan {
+  width: 150%;
+  height: 150%;
+}
+
+@keyframes drone-fade-in {
+  from { opacity: 0; }
 }
 
 .drone-arms line {
