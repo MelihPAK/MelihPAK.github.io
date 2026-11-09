@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" data-lang="en"
+  data-title-en="Document Q&amp;A for Ro-Ro shipping · Melih Pak"
+  data-title-tr="Ro-Ro taşımacılığı için belge soru-cevap · Melih Pak">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Q&amp;A for Ro-Ro shipping · Melih Pak</title>
+  <meta name="description" content="Case study: a hybrid-search RAG system that answers Turkish and English questions over Ro-Ro manifests, bills of lading and dangerous goods declarations, citing the exact page and position of every fact.">
+  <meta property="og:title" content="Document Q&amp;A for Ro-Ro shipping · Melih Pak">
+  <meta property="og:description" content="Hybrid search + grounded answers that cite the page and position of every fact, deployed on-premise.">
+  <meta property="og:url" content="https://melihpak.me/roro.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://melihpak.me/assets/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://melihpak.me/assets/img/og-home.png">
+  <link rel="canonical" href="https://melihpak.me/roro.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='7' width='26' height='20' fill='none' stroke='%23ff7a2e' stroke-width='3'/><rect x='3' y='2' width='14' height='6' fill='%23ff7a2e'/></svg>">
+  <script>
+    (function () {
+      var r = document.documentElement, t = null, l = null;
+      try { t = localStorage.getItem("theme"); l = localStorage.getItem("lang"); } catch (e) {}
+      if (t) r.dataset.theme = t;
+      if (!l) l = (navigator.language || "").toLowerCase().indexOf("tr") === 0 ? "tr" : "en";
+      r.dataset.lang = l;
+      r.lang = l;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">melihpak<span>.me</span></a>
+      <nav class="nav" aria-label="Main">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#search"><span lang="en">Search</span><span lang="tr">Arama</span></a></li>
+          <li><a href="#answers"><span lang="en">Answers</span><span lang="tr">Cevaplar</span></a></li>
+          <li><a href="#security"><span lang="en">Security</span><span lang="tr">Güvenlik</span></a></li>
+          <li><a href="#deployment"><span lang="en">Deployment</span><span lang="tr">Dağıtım</span></a></li>
+        </ul>
+        <div class="toggles">
+          <button class="icon-btn" id="lang-toggle" type="button">TR</button>
+          <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="cs-hero">
+      <a class="back" href="index.html"><span lang="en">← Back to portfolio</span><span lang="tr">← Portfolyoya dön</span></a>
+      <p class="eyebrow"><span lang="en">// case study · retrieval &amp; LLMs</span><span lang="tr">// vaka çalışması · arama &amp; LLM</span></p>
+      <h1><span lang="en">Asking questions of shipping documents, with the source of every answer on the page</span><span lang="tr">Taşımacılık belgelerine soru sormak, her cevabın kaynağı sayfada görünerek</span></h1>
+      <p class="lede">
+        <span lang="en">A document Q&amp;A system for Ro-Ro cargo manifests, bills of lading and dangerous goods declarations. It answers in Turkish or English, cites the page and position behind every fact, and says "not found" instead of guessing.</span>
+        <span lang="tr">Ro-Ro yük manifestoları, konşimentolar ve tehlikeli madde beyanları için bir belge soru-cevap sistemi. Türkçe veya İngilizce cevap veriyor, her bilginin dayandığı sayfayı ve konumu gösteriyor, tahmin etmek yerine "bulunamadı" diyor.</span>
+      </p>
+      <div class="links">
+        <span class="btn" aria-disabled="true"><span lang="en">Source private: in development as a product</span><span lang="tr">Kaynak kod kapalı: ürün olarak geliştiriliyor</span></span>
+        <a class="btn" href="index.html#contact"><span lang="en">Ask me for a demo</span><span lang="tr">Demo isteyin</span></a>
+      </div>
+
+      <div class="stats">
+        <div class="stat det" data-label="hybrid 0.96"><strong>2 → 1</strong>
+          <span lang="en">semantic + keyword search fused in one query (RRF)</span><span lang="tr">anlamsal + kelime araması tek sorguda birleşiyor (RRF)</span></div>
+        <div class="stat det smoke" data-label="grounded 0.98"><strong>5</strong>
+          <span lang="en">excerpts per question are all that leave the server</span><span lang="tr">soru başına sunucudan çıkan tek şey 5 belge parçası</span></div>
+        <div class="stat det" data-label="cpu_only 1.00"><strong>0 GPU</strong>
+          <span lang="en">needed: runs on an ordinary CPU office server</span><span lang="tr">gerekmiyor: sıradan bir CPU'lu ofis sunucusunda çalışıyor</span></div>
+        <div class="stat det smoke" data-label="tests 0.99"><strong>150+</strong>
+          <span lang="en">automated tests, none of which download a model</span><span lang="tr">otomatik test; hiçbiri model indirmiyor</span></div>
+      </div>
+
+<pre class="mono">document
+   │  Docling: layout, OCR, tables
+   ▼
+chunks (≤ 500 tokens, with their headings)
+   ├─► multilingual-e5-large  → dense vector  ─┐
+   └─► BM25 + Turkish stemmer → sparse vector ─┤
+                                               ▼
+question ────────────────────────────────────► Qdrant · RRF fusion
+                                               │  top 5 excerpts
+                                               ▼
+                                             Claude: answers only from the excerpts
+                                               │
+                                               ▼
+                                             answer + [n] → page · bbox</pre>
+    </div>
+
+    <section class="prose">
+      <p class="eyebrow">01</p>
+      <h2><span lang="en">The problem</span><span lang="tr">Problem</span></h2>
+      <p lang="en">Ro-Ro operations teams answer questions like "what is in trailer 34 NKL 905 and how much does it weigh?" by scrolling through scanned manifests, bills of lading and dangerous goods declarations, half in Turkish and half in English. A general chatbot does not fit: the documents contain personal data, the answers must be traceable, and the important terms are codes such as plates, VINs, UN numbers and HS codes, which semantic search alone tends to blur.</p>
+      <p lang="tr">Ro-Ro operasyon ekipleri "34 NKL 905 dorsesinde ne var, ağırlığı ne?" gibi soruları, yarısı Türkçe yarısı İngilizce taranmış manifestolar, konşimentolar ve tehlikeli madde beyanları arasında gezinerek cevaplıyor. Genel bir sohbet botu buna uymuyor: belgelerde kişisel veri var, cevapların izlenebilir olması gerekiyor ve önemli terimler plaka, şasi, UN ve GTİP gibi kodlar; yalnızca anlamsal arama bunları bulanıklaştırma eğiliminde.</p>
+      <ul class="tags"><li>FastAPI</li><li>Docling</li><li>Qdrant</li><li>Claude API</li><li>SQLAlchemy</li><li>Docker</li></ul>
+    </section>
+
+    <section class="prose" id="search">
+      <p class="eyebrow">02</p>
+      <h2><span lang="en">Hybrid search, because codes and meaning need different tools</span><span lang="tr">Hibrit arama: kodlar ve anlam farklı araçlar istiyor</span></h2>
+      <p lang="en">Each chunk is stored with two vectors. A multilingual dense model (e5-large) matches meaning, so "how heavy is it" finds "Gross Weight". A BM25 sparse vector with a Turkish stemmer matches exact tokens, so "UN3480" finds UN3480 and nothing similar. Qdrant runs both searches and fuses the rankings server-side with Reciprocal Rank Fusion, so there is no hand-tuned score weighting.</p>
+      <p lang="tr">Her parça iki vektörle saklanıyor. Çok dilli bir yoğun model (e5-large) anlamı eşleştiriyor; "ne kadar ağır" sorusu "Gross Weight" alanını buluyor. Türkçe kök bulucu kullanan bir BM25 seyrek vektörü birebir kelimeleri eşleştiriyor; "UN3480" yalnızca UN3480'i buluyor. Qdrant iki aramayı da çalıştırıp sıralamaları sunucu tarafında Reciprocal Rank Fusion ile birleştiriyor, elle ayarlanmış bir ağırlık yok.</p>
+      <h3><span lang="en">Details that mattered</span><span lang="tr">Fark yaratan ayrıntılar</span></h3>
+      <ul lang="en">
+        <li><strong>Chunks sized by the embedding model's own tokenizer.</strong> 500 tokens plus the "passage: " prefix stays inside e5's 512-token limit; the app refuses to start if a config change would break this.</li>
+        <li><strong>Contextualised embeddings.</strong> Each chunk is embedded together with its section headings, so a table row still "knows" which document part it belongs to.</li>
+        <li><strong>The Turkish dotted İ.</strong> Lowercasing "İ" in Python produces "i" plus a combining dot, which split tokens and silently broke keyword search for words like "İZMİR". Both documents and queries are now normalised the same way.</li>
+        <li><strong>Metadata read from the document.</strong> Vessel IMO and voyage numbers are extracted automatically when the uploader leaves them blank, and become search filters.</li>
+      </ul>
+      <ul lang="tr">
+        <li><strong>Parça boyutu, gömme modelinin kendi tokenizer'ıyla.</strong> 500 token ve "passage: " öneki e5'in 512 token sınırı içinde kalıyor; bir ayar değişikliği bunu bozacaksa uygulama açılmayı reddediyor.</li>
+        <li><strong>Bağlamlı gömmeler.</strong> Her parça bölüm başlıklarıyla birlikte vektöre çevriliyor; bir tablo satırı hangi bölüme ait olduğunu "biliyor".</li>
+        <li><strong>Türkçe noktalı İ.</strong> Python'da "İ" küçültüldüğünde "i" artı birleşik bir nokta oluşuyor; bu kelimeleri bölüp "İZMİR" gibi aramaları sessizce bozuyordu. Artık belgeler ve sorgular aynı şekilde normalize ediliyor.</li>
+        <li><strong>Belgeden okunan bilgiler.</strong> Gemi IMO ve sefer numarası yükleyen kişi boş bırakırsa belgeden otomatik çıkarılıyor ve arama filtresi oluyor.</li>
+      </ul>
+    </section>
+
+    <section class="prose" id="answers">
+      <p class="eyebrow">03</p>
+      <h2><span lang="en">Grounded answers: cite it or say "not found"</span><span lang="tr">Kaynaklı cevaplar: kaynak göster ya da "bulunamadı" de</span></h2>
+      <p lang="en">The top five excerpts go to Claude with one rule: answer only from these, cite every claim as [n], and say so explicitly when the answer is not there. Every citation maps back to a page and bounding box for PDFs, or to the heading path for Word and HTML files, so a user can check any sentence in one click.</p>
+      <p lang="tr">En uygun beş parça tek bir kuralla Claude'a gidiyor: yalnızca bunlardan cevap ver, her iddiayı [n] ile kaynakla, cevap yoksa bunu açıkça söyle. Her kaynak numarası PDF'lerde sayfa ve konuma, Word ve HTML dosyalarında başlık yoluna bağlanıyor; kullanıcı her cümleyi tek tıkla doğrulayabiliyor.</p>
+      <div class="callout">
+        <p lang="en"><strong>A bug that changed the design:</strong> early on, the model sometimes wrote "this is not in the documents" while still attaching citations, so the UI showed sources for a non-answer. Switching to JSON-schema structured output, with an explicit <code>found</code> field, removed the ambiguity instead of guessing it from the text.</p>
+        <p lang="tr"><strong>Tasarımı değiştiren bir hata:</strong> başlarda model bazen "bu bilgi belgelerde yok" deyip yine de kaynak ekliyordu; arayüz cevap olmayan bir şey için kaynak gösteriyordu. Açık bir <code>found</code> alanı olan JSON şemalı yapılandırılmış çıktıya geçmek, bunu metinden tahmin etmek yerine belirsizliği tamamen kaldırdı.</p>
+      </div>
+      <h3><span lang="en">Follow-up questions</span><span lang="tr">Takip soruları</span></h3>
+      <p lang="en">"And its weight?" is useless as a search query. A small, cheap model (Claude Haiku) rewrites follow-ups into standalone queries using the last few turns; if that call fails, the system falls back to concatenating the questions rather than failing the request. Conversation history lives only in the browser, and old citation numbers are stripped so they never mix with new sources.</p>
+      <p lang="tr">"Peki ağırlığı?" tek başına bir arama sorgusu olarak işe yaramaz. Küçük ve ucuz bir model (Claude Haiku) son birkaç soru-cevabı kullanarak takip sorularını bağımsız sorgulara çeviriyor; bu çağrı başarısız olursa istek düşmüyor, sorular birleştirilerek aranıyor. Sohbet geçmişi yalnızca tarayıcıda tutuluyor ve eski kaynak numaraları yeni kaynaklarla karışmasın diye temizleniyor.</p>
+      <h3><span lang="en">Tested on hard documents</span><span lang="tr">Zor belgelerle test</span></h3>
+      <p lang="en">Beyond clean fixtures, I tested on deliberately degraded documents: a skewed, noisy scan with a stamp over a weight and a handwritten correction, a table that continues on a second page without its header, a Word bill of lading with merged cells, a nested table and an amendment on its last page, and a phone photo of a declaration with perspective, shadow and a coffee stain.</p>
+      <p lang="tr">Temiz örneklerin ötesinde, bilerek bozulmuş belgelerle test ettim: bir ağırlığın üstünde kaşe ve el yazısıyla düzeltme olan eğik, gürültülü bir tarama; ikinci sayfada başlıksız devam eden bir tablo; birleştirilmiş hücreler, iç içe tablo ve son sayfasında düzeltme eki olan bir Word konşimentosu; perspektifi bozuk, gölgeli ve kahve lekeli bir beyan fotoğrafı.</p>
+    </section>
+
+    <section class="prose" id="security">
+      <p class="eyebrow">04</p>
+      <h2><span lang="en">Built for a company, not a demo</span><span lang="tr">Demo için değil, bir şirket için</span></h2>
+      <ul lang="en">
+        <li><strong>Team isolation enforced on the server.</strong> Every search takes a required team scope derived from the session, never from the request; document ids are team-scoped, so other teams' documents simply return 404.</li>
+        <li><strong>Authentication.</strong> Argon2id password hashes, server-side sessions that store only a SHA-256 of an HttpOnly cookie, lockout after repeated failures, and protection against removing the last admin.</li>
+        <li><strong>Audit log.</strong> Logins, uploads, questions, searches and admin changes are recorded with user and IP; passwords and generated answers never are.</li>
+        <li><strong>Folder ingestion.</strong> Files dropped into a team's inbox folder are ingested automatically and moved to <code>islendi/</code> (processed) or <code>hatali/</code> (failed, with the reason).</li>
+        <li><strong>Data leaves only by design.</strong> Documents, vectors and users stay on the customer's server; without an API key the system runs in search-only mode and sends nothing out.</li>
+      </ul>
+      <ul lang="tr">
+        <li><strong>Ekip izolasyonu sunucuda uygulanıyor.</strong> Her arama, istekten değil oturumdan gelen zorunlu bir ekip kapsamı alıyor; belge kimlikleri ekibe özgü, başka ekiplerin belgeleri doğrudan 404 dönüyor.</li>
+        <li><strong>Kimlik doğrulama.</strong> Argon2id şifre özetleri, HttpOnly çerezin yalnızca SHA-256 özetini saklayan sunucu taraflı oturumlar, tekrarlanan hatalarda kilitleme ve son yöneticinin silinmesine karşı koruma.</li>
+        <li><strong>İşlem kaydı.</strong> Girişler, yüklemeler, sorular, aramalar ve yönetici değişiklikleri kullanıcı ve IP ile kaydediliyor; şifreler ve üretilen cevaplar asla kaydedilmiyor.</li>
+        <li><strong>Klasörden alma.</strong> Bir ekibin gelen klasörüne bırakılan dosyalar otomatik yükleniyor; sonuca göre <code>islendi/</code> veya nedeniyle birlikte <code>hatali/</code> klasörüne taşınıyor.</li>
+        <li><strong>Veri yalnızca bilinçli olarak çıkıyor.</strong> Belgeler, vektörler ve kullanıcılar müşterinin sunucusunda kalıyor; API anahtarı yoksa sistem yalnızca arama modunda çalışıyor ve dışarı hiçbir şey göndermiyor.</li>
+      </ul>
+    </section>
+
+    <section class="prose" id="deployment">
+      <p class="eyebrow">05</p>
+      <h2><span lang="en">Deployment and testing</span><span lang="tr">Dağıtım ve test</span></h2>
+      <p lang="en">The whole stack (app, Qdrant, Caddy for HTTPS) installs on a customer server with one Docker Compose command, uses a CPU-only PyTorch build, runs as a non-root user and ships with backup and restore scripts. Changing the embedding model requires a new collection: the app checks collection metadata at startup and refuses a mismatch instead of returning wrong results.</p>
+      <p lang="tr">Tüm yapı (uygulama, Qdrant, HTTPS için Caddy) müşteri sunucusuna tek bir Docker Compose komutuyla kuruluyor, yalnızca CPU'lu PyTorch kullanıyor, root olmayan bir kullanıcıyla çalışıyor ve yedekleme/geri yükleme betikleriyle geliyor. Gömme modelini değiştirmek yeni bir koleksiyon gerektiriyor: uygulama açılışta koleksiyon bilgilerini kontrol ediyor ve uyumsuzlukta yanlış sonuç döndürmek yerine açılmayı reddediyor.</p>
+      <pre class="mono">cd deploy &amp;&amp; docker compose up -d --build</pre>
+      <p lang="en">Unit tests inject fakes for the converter, vector store and LLM, so they run in seconds and never download a model. Integration tests use a real Qdrant and real models; live LLM tests are marked separately because they cost money. An architecture test enforces module boundaries: only one file may import Docling, one Qdrant, one the Anthropic SDK. Type checking runs with mypy in strict mode.</p>
+      <p lang="tr">Birim testleri dönüştürücü, vektör deposu ve LLM için sahte nesneler kullanıyor; saniyeler içinde çalışıyor ve hiç model indirmiyor. Entegrasyon testleri gerçek Qdrant ve gerçek modellerle çalışıyor; canlı LLM testleri ücretli oldukları için ayrı işaretli. Bir mimari testi modül sınırlarını zorunlu kılıyor: Docling'i yalnızca bir dosya, Qdrant'ı yalnızca bir dosya, Anthropic SDK'sını yalnızca bir dosya içe aktarabiliyor. Tip denetimi mypy strict modunda.</p>
+    </section>
+
+    <section class="prose">
+      <p class="eyebrow">06</p>
+      <h2><span lang="en">Limitations &amp; next steps</span><span lang="tr">Sınırlamalar &amp; sonraki adımlar</span></h2>
+      <p lang="en">Accuracy has so far been checked on my own test documents, not measured on real customer documents; that evaluation comes first. The next features are the ones operations teams actually pay for: extracting manifest tables to Excel, automatically reconciling a manifest against its bills of lading and dangerous goods declarations, highlighting the cited region directly on the PDF, and single sign-on with Microsoft Entra ID.</p>
+      <p lang="tr">Doğruluk şu ana kadar kendi test belgelerimle kontrol edildi, gerçek müşteri belgelerinde ölçülmedi; ilk yapılacak iş bu değerlendirme. Sıradaki özellikler, operasyon ekiplerinin gerçekten para ödediği şeyler: manifesto tablolarını Excel'e çıkarmak, manifestoyu konşimento ve tehlikeli madde beyanlarıyla otomatik karşılaştırmak, kaynak gösterilen bölgeyi doğrudan PDF üzerinde vurgulamak ve Microsoft Entra ID ile tek oturum açma.</p>
+      <div class="links" style="margin-top:28px">
+        <a class="btn primary" href="index.html#contact"><span lang="en">Get in touch</span><span lang="tr">İletişime geç</span></a>
+        <a class="btn" href="index.html#projects"><span lang="en">More projects</span><span lang="tr">Diğer projeler</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>© 2026 Melih Pak</span>
+      <span class="mono">melihpak.me</span>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+  <script src="assets/fun.js"></script>
+  <script src="assets/drone.js"></script>
+</body>
+</html>

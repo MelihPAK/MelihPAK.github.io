@@ -220,6 +220,12 @@
             <p lang="en">An end-to-end detection project, from finding a data leak in a public dataset to a CPU-only ONNX deployment. <a href="wildfire.html">Read the case study →</a></p>
             <p lang="tr">Açık bir veri setindeki sızıntıyı bulmaktan yalnızca CPU ile çalışan ONNX dağıtımına kadar uçtan uca bir tespit projesi. <a href="wildfire.html">Vaka çalışmasını oku →</a></p>
           </li>
+          <li class="stop">
+            <span class="when mono"><span lang="en">Nov 2026</span><span lang="tr">Kas 2026</span></span>
+            <h3><span lang="en">Built a document Q&amp;A system for Ro-Ro shipping</span><span lang="tr">Ro-Ro taşımacılığı için belge soru-cevap sistemi geliştirdim</span></h3>
+            <p lang="en">Hybrid search and grounded LLM answers over scanned shipping documents, packaged for on-premise installation. <a href="roro.html">Read the case study →</a></p>
+            <p lang="tr">Taranmış taşımacılık belgeleri üzerinde hibrit arama ve kaynaklı LLM cevapları; müşteri sunucusuna kurulacak şekilde paketlendi. <a href="roro.html">Vaka çalışmasını oku →</a></p>
+          </li>
           <li class="stop future">
             <span class="when mono"><span lang="en">2027 (expected)</span><span lang="tr">2027 (beklenen)</span></span>
             <h3><span lang="en">Graduation, and the next chapter</span><span lang="tr">Mezuniyet ve sonraki bölüm</span></h3>
@@ -237,6 +243,12 @@
           <h2><span lang="en">Other things I've built</span><span lang="tr">Geliştirdiğim diğer projeler</span></h2>
         </div>
         <div class="grid">
+          <article class="card det smoke" data-label="retrieval 0.96">
+            <h3><span lang="en">Ro-Ro Document Q&amp;A</span><span lang="tr">Ro-Ro Belge Soru-Cevap</span></h3>
+            <p lang="en">Hybrid-search RAG over shipping manifests, bills of lading and dangerous goods declarations. Answers in Turkish or English with the page and position of every fact, and says "not found" instead of guessing. On-premise Docker deployment with team isolation and audit logging. <a href="roro.html">Case study →</a></p>
+            <p lang="tr">Yük manifestoları, konşimentolar ve tehlikeli madde beyanları üzerinde hibrit aramalı bir RAG sistemi. Türkçe veya İngilizce cevap veriyor, her bilginin sayfasını ve konumunu gösteriyor, tahmin etmek yerine "bulunamadı" diyor. Ekip izolasyonu ve işlem kaydıyla müşteri sunucusuna Docker ile kuruluyor. <a href="roro.html">Vaka çalışması →</a></p>
+            <ul class="tags"><li>FastAPI</li><li>Qdrant</li><li>Docling</li><li>Claude API</li><li>Docker</li></ul>
+          </article>
           <article class="card det" data-label="vision 0.93">
             <h3>MultiZoo Image Classification</h3>
             <p lang="en">A Vision Transformer trained from scratch on 20+ animal classes. Hyperparameter tuning, early stopping and augmentation took it past ~90% accuracy, served through a live inference interface with per-class metrics.</p>
@@ -290,6 +302,10 @@
           <div>
             <h3><span lang="en">Model serving</span><span lang="tr">Model sunumu</span></h3>
             <ul class="tags"><li>ONNX</li><li>ONNX Runtime</li><li>Triton Inference Server</li><li>Docker</li></ul>
+          </div>
+          <div>
+            <h3><span lang="en">LLMs &amp; retrieval</span><span lang="tr">LLM &amp; arama</span></h3>
+            <ul class="tags"><li>RAG</li><li>Claude API</li><li>Qdrant</li><li>Hybrid search (BM25 + embeddings)</li><li>Docling</li><li>FastAPI</li></ul>
           </div>
           <div>
             <h3><span lang="en">Languages</span><span lang="tr">Diller</span></h3>
